@@ -1,0 +1,62 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+:root {
+  --soil-50: #FAF6F2;
+  --soil-100: #F1E8DF;
+  --soil-200: #E2CFBE;
+  --soil-300: #CFAA90;
+  --soil-400: #B97F5C;
+  --soil-500: #A0552F;
+  --soil-600: #84431F;
+  --soil-700: #683416;
+  --soil-800: #4A2510;
+  --soil-900: #2E1709;
+  --avocado-50: #F4F7EF;
+  --avocado-100: #E4ECD3;
+  --avocado-200: #C7D8A6;
+  --avocado-300: #A4BE76;
+  --avocado-400: #7E9F4E;
+  --avocado-500: #5C7F33;
+  --avocado-600: #466426;
+  --avocado-700: #34491D;
+  --avocado-800: #233214;
+  --avocado-900: #141C0B;
+  --cream: #FBF7F1;
+  --sand: #F3EBDF;
+  --bark: #3B2A1F;
+  --bone: #FFFFFF;
+  --status-success: var(--avocado-500);
+  --status-warning: #D4923A;
+  --status-danger: #B5341F;
+  --status-info: #3D6B7F;
+}
+body {
+  background-color: var(--cream);
+  color: var(--bark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--soil-200);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--soil-300);
+}
