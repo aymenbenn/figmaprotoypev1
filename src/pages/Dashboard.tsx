@@ -389,6 +389,7 @@ export function Dashboard() {
     </div>
   </div>
 </Card>
+</div>
         {/* RIGHT COLUMN */}
         <div className="space-y-6">
 
