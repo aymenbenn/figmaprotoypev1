@@ -190,7 +190,7 @@ export function Dashboard() {
           src="/hero-bg.png"
           alt=""
           aria-hidden
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent"
           onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
         />
         {/* Fallback gradient (always present, sits behind image) */}
@@ -356,16 +356,16 @@ export function Dashboard() {
               </ResponsiveContainer>
             </CardContent>
             {/* A.png below chart */}
-            <div className="flex justify-center py-4 border-t border-soil-50">
-              <img
-                src="/A.png"
-                alt="Brand mark"
-                className="h-10 object-contain opacity-60"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-              />
-            </div>
-          </Card>
-        </div>
+           <div className="w-full border-t border-soil-50 overflow-hidden">
+  <img
+    src="/A.png"
+    alt="Factory visual"
+    className="w-full h-48 object-cover"
+    onError={(e) => {
+      (e.currentTarget as HTMLImageElement).style.display = 'none';
+    }}
+  />
+</div>
 
         {/* RIGHT COLUMN */}
         <div className="space-y-6">
