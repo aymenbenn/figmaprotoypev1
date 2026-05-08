@@ -187,12 +187,14 @@ export function Dashboard() {
       <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: 140 }}>
         {/* Background image from public folder */}
         <img
-          src="/hero-bg.png"
-          alt=""
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-        />
+  src="/hero-bg.png"
+  alt=""
+  aria-hidden
+  className="absolute inset-0 w-full h-full object-cover object-center"
+  onError={(e) => {
+    (e.currentTarget as HTMLImageElement).style.display = 'none';
+  }}
+/>
         {/* Fallback gradient (always present, sits behind image) */}
         <div
           className="absolute inset-0"
