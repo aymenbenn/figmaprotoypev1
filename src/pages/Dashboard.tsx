@@ -184,38 +184,40 @@ export function Dashboard() {
     <div className="p-6 lg:p-8 max-w-screen-2xl mx-auto space-y-8 animate-in fade-in duration-500">
 
       {/* ── Hero Header ── */}
-      <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: 140 }}>
-        {/* Background image from public folder */}
-        <img
-  src="/hero-bg.png"
-  alt=""
-  aria-hidden
-  className="absolute inset-0 w-full h-full object-cover object-center"
-  onError={(e) => {
-    (e.currentTarget as HTMLImageElement).style.display = 'none';
-  }}
-/>
-        {/* Fallback gradient (always present, sits behind image) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(135deg, #1a2e0a 0%, #2d5016 40%, #4f7c1e 70%, #7aab3a 100%)',
-          }}
-        />
-        {/* Readability overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+ <div className="relative rounded-2xl overflow-hidden min-h-[140px]">
 
-        <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 lg:p-8">
-          <div>
-            <h1 className="text-2xl font-bold text-white drop-shadow-lg">Good morning, Amara</h1>
-            <p className="text-white/70 text-sm mt-1">
-              Factory overview — Friday, 8 May 2026
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm">
-              Export daily report
-            </Button>
+  {/* Background image */}
+  <img
+    src="/hero-bg.png"
+    alt=""
+    aria-hidden
+    className="absolute inset-0 w-full h-full object-cover object-center"
+    onError={(e) => {
+      (e.currentTarget as HTMLImageElement).style.display = 'none';
+    }}
+  />
+
+  {/* Dark overlay only */}
+  <div className="absolute inset-0 bg-black/45" />
+
+  <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 lg:p-8">
+    <div>
+      <h1 className="text-2xl font-bold text-white drop-shadow-lg">
+        Good morning, Amara
+      </h1>
+
+      <p className="text-white/70 text-sm mt-1">
+        Factory overview — Friday, 8 May 2026
+      </p>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <Button
+        variant="outline"
+        className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
+      >
+        Export daily report
+      </Button>
             <Button variant="primary">New work order</Button>
           </div>
         </div>
@@ -358,18 +360,35 @@ export function Dashboard() {
               </ResponsiveContainer>
             </CardContent>
             {/* A.png below chart */}
-           <div className="w-full border-t border-soil-50 overflow-hidden">
-  <img
-    src="/A.png"
-    alt="Factory visual"
-    className="w-full h-48 object-cover"
-    onError={(e) => {
-      (e.currentTarget as HTMLImageElement).style.display = 'none';
-    }}
-  />
-</div>
+           
 </Card>
+{/* Factory Showcase Section */}
+<Card className="overflow-hidden">
+  <div className="relative">
+    <img
+      src="/A.png"
+      alt="Factory visual"
+      className="w-full h-[320px] object-cover"
+      onError={(e) => {
+        (e.currentTarget as HTMLImageElement).style.display = 'none';
+      }}
+    />
 
+    {/* Overlay */}
+    <div className="absolute inset-0 bg-black/30" />
+
+    {/* Content */}
+    <div className="absolute bottom-0 left-0 p-6 text-white">
+      <h3 className="text-2xl font-bold">
+        Avocado Processing Facility
+      </h3>
+
+      <p className="text-sm text-white/80 mt-1 max-w-xl">
+        Real-time production monitoring and logistics operations across all processing units.
+      </p>
+    </div>
+  </div>
+</Card>
         {/* RIGHT COLUMN */}
         <div className="space-y-6">
 
