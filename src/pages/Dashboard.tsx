@@ -366,6 +366,7 @@ export function Dashboard() {
     }}
   />
 </div>
+</Card>
 
         {/* RIGHT COLUMN */}
         <div className="space-y-6">
