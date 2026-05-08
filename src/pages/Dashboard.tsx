@@ -26,8 +26,7 @@ import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { cn } from '../lib/utils';
 
-/* ---------------- DATA ---------------- */
-
+// ---------------- DATA ----------------
 const throughputData = [
   { time: '06:00', actual: 400, target: 500 },
   { time: '08:00', actual: 1200, target: 1000 },
@@ -118,133 +117,95 @@ const timeline = [
   { id: 4, time: '06:00', module: 'System', color: 'bg-soil-400', text: 'Shift A started. 42 operators clocked in.' }
 ];
 
-/* ---------------- COMPONENT ---------------- */
-
+// ---------------- MAIN DASHBOARD ----------------
 export function Dashboard() {
   return (
     <div className="p-6 lg:p-8 max-w-screen-2xl mx-auto space-y-8">
 
-      {/* HEADER (WITH BACKGROUND IMAGE ADDED) */}
-      <div
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-xl bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero.png')" }}
-      >
+      {/* HEADER */}
+      <div className="flex justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-bark">Good morning, Amara</h1>
-          <p className="text-soil-500 text-sm mt-1">
-            Here's what's happening across Kakira Factory today — Friday, 8 May 2026
+          <h1 className="text-2xl font-bold">Good morning, Amara</h1>
+          <p className="text-sm text-gray-500">
+            Factory overview — Friday, 8 May 2026
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Button variant="outline">Export daily report</Button>
-          <Button variant="primary">New work order</Button>
+        <div className="flex gap-3">
+          <Button variant="outline">Export</Button>
+          <Button>New work order</Button>
         </div>
       </div>
 
-      {/* KPI STRIP (UNCHANGED) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard title="Production Output Today" value="12,840 kg" subtext="avocado oil" trend="+8.2%" trendUp />
-        <KpiCard title="Open Procurement Orders" value="23" subtext="4 awaiting approval" trend="-2" />
-        <KpiCard title="Inventory Health" value="94%" subtext="7 SKUs below reorder" trend="-1.5%" alert />
-        <KpiCard title="On-time Delivery" value="96.4%" subtext="2 shipments delayed today" trend="+0.4%" trendUp />
+      {/* KPI */}
+      <div className="grid grid-cols-4 gap-4">
+        <KpiCard title="Production Output" value="12,840 kg" trend="+8.2%" trendUp />
+        <KpiCard title="Procurement" value="23" trend="-2" />
+        <KpiCard title="Inventory" value="94%" alert />
+        <KpiCard title="Delivery" value="96.4%" trend="+0.4%" trendUp />
       </div>
 
-      {/* 🟢 TANK SECTION (ADDED) */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Avocado Oil Storage Tanks</CardTitle>
-        </CardHeader>
+      {/* CONTENT */}
+      <div className="grid grid-cols-3 gap-6">
 
-        <CardContent>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {Array.from({ length: 11 }, (_, i) => (
-              <div key={i} className="border rounded-lg p-3 text-center">
-                <img src="/tank.png" className="w-10 h-10 mx-auto mb-2" />
-                <p className="font-semibold">Tank {i + 1}</p>
-                <p className="text-sm text-gray-600">
-                  {[55,59,71,11,3,43,75,87,33,64,52][i]}% filled
-                </p>
-                <p className="text-xs text-gray-400">
-                  {[2265,2029,1443,4436,4857,2856,1255,658,3333,1787,2391][i]} L left
-                </p>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+        <div className="col-span-2 space-y-6">
 
-      {/* MAIN GRID */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {/* LEFT */}
-        <div className="lg:col-span-2 space-y-6">
-
-          {/* PRODUCTION */}
           <Card>
             <CardHeader>
-              <CardTitle>Production lines — live status</CardTitle>
+              <CardTitle>Production Lines</CardTitle>
             </CardHeader>
+
             <CardContent>
-              {/* unchanged UI kept */}
+              {productionLines.map(line => (
+                <div key={line.id} className="py-4 border-b">
+                  <div className="flex justify-between">
+                    <div>
+                      <p>{line.name}</p>
+                      <p className="text-xs text-gray-500">{line.sku}</p>
+                    </div>
+                    <Badge>{line.status}</Badge>
+                  </div>
+                </div>
+              ))}
             </CardContent>
           </Card>
 
-          {/* CHART */}
+        </div>
+
+        <div className="space-y-6">
+
           <Card>
             <CardHeader>
-              <CardTitle>Throughput today vs target</CardTitle>
+              <CardTitle>Alerts</CardTitle>
             </CardHeader>
 
-            <CardContent className="h-[300px]">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={throughputData}>
-                  <CartesianGrid />
-                  <XAxis dataKey="time" />
-                  <YAxis />
-                  <Tooltip />
-                  <Area dataKey="actual" stroke="#22c55e" fill="#bbf7d0" />
-                  <Area dataKey="target" stroke="#94a3b8" fill="none" />
-                </AreaChart>
-              </ResponsiveContainer>
-
-              {/* 🟢 ADDED IMAGE */}
-              <img src="/A.png" className="mt-4 w-full rounded-lg" />
+            <CardContent>
+              {inventoryAlerts.map(a => (
+                <div key={a.id} className="flex justify-between py-2">
+                  <span>{a.sku}</span>
+                  {a.critical && <AlertTriangle />}
+                </div>
+              ))}
             </CardContent>
           </Card>
-        </div>
 
-        {/* RIGHT */}
-        <div className="space-y-6">
-          {/* unchanged panels */}
         </div>
-
       </div>
-
-      {/* TIMELINE (UNCHANGED) */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent activity</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {/* unchanged */}
-        </CardContent>
-      </Card>
 
     </div>
   );
 }
 
-/* ---------------- KPI CARD ---------------- */
-
-function KpiCard({ title, value, subtext, trend, trendUp, alert }) {
+// ---------------- KPI CARD ----------------
+function KpiCard({ title, value, trend, trendUp, alert }) {
   return (
-    <Card>
-      <CardContent>
-        <p className="text-sm">{title}</p>
-        <h2 className="text-2xl font-bold">{value}</h2>
-        <p className="text-xs text-gray-500">{subtext}</p>
-      </CardContent>
-    </Card>
+    <div className="p-4 border rounded-lg">
+      <p className="text-sm">{title}</p>
+      <h2 className="text-xl font-bold">{value}</h2>
+      <p className={trendUp ? 'text-green-500' : 'text-red-500'}>
+        {trend}
+      </p>
+      {alert && <AlertTriangle />}
+    </div>
   );
 }
