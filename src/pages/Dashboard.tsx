@@ -198,7 +198,7 @@ export function Dashboard() {
   />
 
   {/* Dark overlay only */}
-  <div className="absolute inset-0 bg-black/45" />
+
 
   <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 lg:p-8">
     <div>
